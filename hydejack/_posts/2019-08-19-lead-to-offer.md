@@ -425,7 +425,7 @@ void push(int node)
 # 10 斐波那契数
 * 循环方法实现计算
     * 时间复杂度`O(n)`
-* [青蛙跳台阶问题](https:// www.jianshu.com/p/965d12083d7f)
+* [青蛙跳台阶问题](https://www.jianshu.com/p/965d12083d7f)
 
 ```cpp
 long long Fibonacci(unsigned n)
@@ -1632,7 +1632,7 @@ int main()
 	return 0;
 }
 ```
-[Top][content]
+[&#8657;][content]
 
 
 [content]:#目录
