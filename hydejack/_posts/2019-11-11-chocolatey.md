@@ -1,0 +1,53 @@
+---
+title: Chocolatey
+image: /assets/img/blog/design.jpg
+description: >
+   介绍chocolatey的使用方式
+excerpt_separator: <!--more-->
+---
+<!--more-->
+
+# 安装choco
+要求：Windows 7+ / Windows Server 2003+
+
+以**管理员权**限运行cmd.exc或powershell.exe
+
+cmd运行：
+
+```shell
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+```
+
+安装完成，运行choco 或 choco -?检查一下是否安装正确。
+
+
+## 用choco安装软件
+最好还是用管理员权限运行cmd.exe
+```
+choco install <packagename> -y
+cinst <packagename> -y
+```
+
+安装包的搜索社区[Chocolatey Gallery | Packages](https://chocolatey.org/packages)
+
+其他用法：
+```
+choco install jdk8 googlechrome vscode 7zip //一次安装多个软件包
+choco install nodejs.install --version 0.10.35 //安装指定版本
+choco install dev-package.config //安装dev-package.config文件内描述的所有软件包
+```
+dev-package.config：
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+    <packages>
+      <package id="jdk8" />
+      <package id="googlechrome" version="71.0.3578.98" />
+      <package id="vscode" />
+      <package id="7zip" />
+    </packages>
+```
+文件名称随意，但是扩展名必须是.config。
+
+**通过.config的方式，就可以配置一个团队统一的开发环境，软件和版本都可以统一。这样可以为开发带来很多好处，避免由于开发环境不一样引起的各种不同错误。**
+
+
