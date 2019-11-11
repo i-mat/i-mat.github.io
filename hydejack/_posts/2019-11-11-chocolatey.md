@@ -10,7 +10,7 @@ excerpt_separator: <!--more-->
 # 安装choco
 要求：Windows 7+ / Windows Server 2003+
 
-以**管理员权**限运行cmd.exc或powershell.exe
+以**管理员权限**运行cmd.exc或powershell.exe
 
 cmd运行：
 
@@ -23,12 +23,13 @@ cmd运行：
 
 ## 用choco安装软件
 最好还是用管理员权限运行cmd.exe
+
 ```
 choco install <packagename> -y
 cinst <packagename> -y
 ```
 
-安装包的搜索社区[Chocolatey Gallery | Packages](https://chocolatey.org/packages)
+安装包的搜索社区[Chocolatey Gallery Packages](https://chocolatey.org/packages)
 
 其他用法：
 ```
