@@ -1,6 +1,6 @@
 ---
 title: Chocolatey
-image: /assets/img/blog/design.jpg
+image: /assets/img/blog/choco.jpg
 description: >
    介绍chocolatey的使用方式
 excerpt_separator: <!--more-->
