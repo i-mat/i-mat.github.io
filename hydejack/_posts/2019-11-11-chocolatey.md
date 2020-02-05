@@ -47,8 +47,14 @@ dev-package.config：
       <package id="7zip" />
     </packages>
 ```
-文件名称随意，但是扩展名必须是.config。
+文件名称随意，但是扩展名必须是`.config`。
 
-**通过.config的方式，就可以配置一个团队统一的开发环境，软件和版本都可以统一。这样可以为开发带来很多好处，避免由于开发环境不一样引起的各种不同错误。**
+**通过`.config`的方式，就可以配置一个团队统一的开发环境，软件和版本都可以统一。这样可以为开发带来很多好处，避免由于开发环境不一样引起的各种不同错误。**
 
+## 常用命令
+[Command Official](https://chocolatey.org/docs/commands-reference#how-to-pass-options-switches)
 
+* `choco list -li` 查看本地安装的软件
+* `choco search nodejs` 查找安装包
+* `choco outdated` 检查是否有旧版本软件
+* `choco list -l --idonly > choco.txt` 导出已安装的软件列表
