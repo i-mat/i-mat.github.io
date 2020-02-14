@@ -1,5 +1,5 @@
 ---
-image: /assets/img/blog/hydejack-8.png
+image: /assets/img/blog/desig.jpg
 # accent_color: rgb(46, 150, 159)
 accent_image:
   background: rgb(75, 0, 130)
