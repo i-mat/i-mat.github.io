@@ -2,41 +2,43 @@
 # Must be the same as `author` in `_config.yml`.
 # Change `author1` to your shortname.
 author1:
-  name:              <Sean> <Mat>
-  email:             <imat24@outlook.com>
+  name:              Nick Engmann
+  email:             cyengmann@gmail.com
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    Stay foolish, Stay hungry.
+    I'm an aspiring inventor who seeks to learn something new every day. <br>
+    I graduated the University of Texas at Austin Spring of 2016 with a bachelors in Integrated Circuits and Computer Engineering and a minor in Government. <br><br>
+
 
   # This photo will be used in the about section
   picture:
-    path:            /assets/img/mat.jpg
+    path:            /assets/icons/profile.jpg
     # srcset is optional, but can be used to provide higher res versions for retina displays
     srcset:
-      1x:            /assets/img/mat.jpg
-      2x:            /assets/img/mat.jpg
+      1x:            /assets/icons/profile.jpg
+      2x:            /assets/icons/profile.jpg
 
   # Social media icons in sidebar
   # Comment/uncommet to show/hide
   # Rearrange to change the order in which they appear
   social:
-    # twitter:         <username>
-    github:          <i-mat>
-    email:           <imat24@outlook.com>
-    # phone:           13713972908
+    github:          NickEngmann
+    email:           cyengmann@gmail.com
+    youtube:         UC6wyfciUXjWAKDiDSlMx3VA
+    resume:          /assets/Resume.pdf
+    twitter:         whoiscyril
+    # facebook:        nick.engmann
     # rss:             https://<url>/feed.xml
-    # facebook:        <username>
     # google:          <number>
     # vk:              <username>
-    # youtube:         <string_string_string>
     # vimeo:           <username>
     # vine:            <username>
     # spotify:         <user>/<number>
     # soundcloud:      <username>
     # lastfm:          <username>
-    instagram:       <username>
+    instagram:       nick.engmann
     # flickr:          <string@string>
     # 500px:           <username>
     # dribbble:        <username>
@@ -60,8 +62,7 @@ author1:
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
-    # download:        <url>
-    # keybase          <username>
+
 
 # Another author (optional)
 author2:
@@ -73,7 +74,10 @@ author2:
     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
     Open `_data/authors.yml` to edit this text.
-
   picture:           https://placehold.it/128x128
   twitter:           <username>
   github:            <username>
+  accent_color:      '#268bd2'
+  accent_image:
+    background:      '#202020'
+    overlay:         false

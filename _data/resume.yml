@@ -1,10 +1,10 @@
 basics:
-  name: "Sean Mat"
+  name: "Nick Engmann"
   label: "Systems Architecture Engineer"
-  picture: "/assets/img/mat.jpg"
-  email: "imat24@outlook.com"
-  phone: "(+86) 137-139-72908"
-  website: "https://i-mat.github.io/"
+  picture: "/assets/icons/icon.png"
+  email: "cyengmann@gmail.com"
+  phone: "(214) 316-0638"
+  website: "https://nickengmann.com"
   summary: >
     I'm an aspiring inventor who seeks to learn something new every day. 
     I graduated the University of Texas at Austin Spring of 2016 with a bachelors in Integrated Circuits and Computer Engineering and a minor in Government. <br><br>
@@ -22,14 +22,14 @@ basics:
 
   location:
     address: ""
-    postalCode: "518000"
-    city: "Shenzhen"
-    countryCode: "China"
-    region: "Gunagdong"
+    postalCode: "11216"
+    city: "Brooklyn"
+    countryCode: "US"
+    region: "New York"
   profiles:
     - network: "Github"
-      username: "i-mat"
-      url: "https://github.com/i-mat"
+      username: "NickEngmann"
+      url: "https://github.com/NickEngmann"
     - network: "LinkedIn"
       username: "Nick Engmann"
       url: "https://www.linkedin.com/in/nick-engmann"

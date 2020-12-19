@@ -2,9 +2,9 @@
 layout: project
 title: 'Albus'
 date: 19 Dec 2016
-# image:  
-  # path: /assets/img/projects/albus.png
-# screenshot: /assets/img/projects/albus.png
+image:  
+  path: /assets/img/projects/albus.png
+screenshot: /assets/img/projects/albus.png
 links:
   - title: Github
     url: https://github.com/nlaz/albus
