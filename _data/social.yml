@@ -1,7 +1,7 @@
 # This file contains meta data for various social media sites
 email:
   name: Email
-  icon: icon-mail2
+  icon: icon-mail
   prepend: 'mailto:'
 amazon:
   name: Amazon
@@ -206,7 +206,3 @@ keybase:
 download:
   name: Download
   icon: icon-box-add
-phone:
-  name: Phone
-  icon: icon-phone
-  prepend: 'tel:'
