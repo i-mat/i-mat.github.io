@@ -1,6 +1,7 @@
 # Ignore docs files
 _gh_pages
-_site*
+_site
+_drafts
 .ruby-version
 
 # Numerous always-ignore extensions
@@ -42,10 +43,10 @@ vendor/bundle
 .bundle
 .sass-cache
 .jekyll-metadata
+.jekyll-cache
 *.gem
 _zip
+/stats.json
 
-#<removed>
-
-# SSHKey
-.ssh
+/assets/js/*hydejack-*
+/_sass/*/__*__/*
