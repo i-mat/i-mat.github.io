@@ -1,166 +1,96 @@
 ---
-# Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
-layout: about
+layout: page
+# The Home page layout
 ---
 
-{% assign strings = site.data.strings %}
-{% assign no_third_column = page.no_third_column | default:site.hydejack.no_third_column | default:false %}
 
-{% if content contains "<!--projects-->" %}
-{% capture projets_x %}
-{% if page.selected_projects %}
-  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
-    {% for project_path in page.selected_projects %}
-      {% if major >= 4 and minor >= 1 %}
-       {% assign project = site.projects | find_exp:"project", "project_path == project.path or project_path == project.url" %}
-      {% else %}
-                            {% assign project = site.projects | where_exp:"project", "project_path == project.path" | first %}
-        {% unless project %}{% assign project = site.projects | where_exp:"project", "project_path == project.url"  | first %}{% endunless %}
-      {% endif %}
+{% assign pinned = site.posts | where_exp: "item", "item.pin == true"  %}
+{% assign default = site.posts | where_exp: "item", "item.pin != true"  %}
+{% assign posts = "" | split: "" %}
 
-      {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
-      <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
-        {% if project %}
-          {% include_cached pro/project-card.html project=project featured=featured %}
-        {% else %}
-          Project with path <code>{{ project_path }}</code> not found.
+<!-- Get pinned posts -->
+
+{% assign offset = paginator.page | minus: 1 | times: paginator.per_page %}
+{% assign pinned_num = pinned.size | minus: offset %}
+
+{% if pinned_num > 0 %}
+  {% for i in (offset..pinned.size) limit: pinned_num %}
+    {% assign posts = posts | push: pinned[i] %}
+  {% endfor %}
+{% else %}
+  {% assign pinned_num = 0 %}
+{% endif %}
+
+
+<!-- Get default posts -->
+
+{% assign default_beg = offset | minus: pinned.size %}
+
+{% if default_beg < 0 %}
+  {% assign default_beg = 0 %}
+{% endif %}
+
+{% assign default_num = paginator.posts | size | minus: pinned_num  %}
+{% assign default_end = default_beg | plus: default_num | minus: 1 %}
+
+{% if default_num > 0 %}
+  {% for i in (default_beg..default_end) %}
+    {% assign posts = posts | push: default[i] %}
+  {% endfor %}
+{% endif %}
+
+
+<div id="post-list">
+
+{% for post in posts %}
+
+  <div class="post-preview">
+    <h1>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        {% include no-linenos.html content=post.content %}
+        {{ content | markdownify | strip_html | truncate: 200 }}
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        {% include timeago.html date=post.date tooltip=true %}
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        {% include read-time.html content=post.content %}
+
+        <!-- page views -->
+        {% if site.google_analytics.pv.proxy_endpoint or site.google_analytics.pv.cache_path %}
+        <i class="far fa-eye fa-fw"></i>
+        <span id="pv_{{-post.title-}}" class="pageviews">
+          <i class="fas fa-spinner fa-spin fa-fw"></i>
+        </span>
         {% endif %}
       </div>
-    {% endfor %}
-  </div>
-{% elsif site.projects.size > 1 %}
-  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
-    {% assign ordered_projects = site.projects | sort:"date" | reverse %}
-    {% for project in ordered_projects limit:2 %}
-      {% assign featured = page.featured | default:project.featured | default:page.big_project | default:project.big_project %}
-      <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
-        {% include_cached pro/project-card.html project=project featured=featured %}
+
+      {% if post.pin %}
+      <div class="pin">
+        <i class="fas fa-thumbtack fa-fw"></i>
+        <span>{{ site.data.label.pin_prompt | default: 'Pinned' }}</span>
       </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
-{% assign projects_page = page.projects_page | default:page.more_projects %}
-{% if projects_page %}
-  {% if major >= 4 and minor >= 1 %}
-    {% assign more_projects = site.pages | find_exp:"page", "projects_page == page.path or projects_page == page.url" %}
-  {% else %}
-                              {% assign more_projects = site.pages | where_exp:"page", "projects_page == page.path" | first %}
-    {% unless more_projects %}{% assign more_projects = site.pages | where_exp:"page", "projects_page == page.url"  | first %}{% endunless %}
-  {% endif %}
-  
-  {% if more_projects %}
-    {% capture projects_title %}<a class="heading flip-title" href="{{ more_projects.url | relative_url }}">{{ more_projects.title }}</a>{% endcapture %}
-    {% assign text = strings.welcome.more_projects | default:"See <!--projects_title--> for more" %}
-    <p class="read-more mt1">
-      {{ text | replace:"<!--projects_title-->", projects_title }}
-    </p>
-  {% else %}
-    Page with path <code>{{ page.more_posts }}</code> not found.
-  {% endif  %}
-{% endif %}
-{% endcapture %}
-{% assign content = content | replace:"<!--projects-->", projets_x %}
-{% endif %}
-
-{% if content contains "<!--posts-->" %}
-{% capture posts_x %}
-{% if page.selected_posts %}
-  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
-    {% for post_path in page.selected_posts %}
-      {% if major >= 4 and minor >= 1 %}
-        {% assign post = site.posts | find_exp:"post", "post_path == post.path or post_path == post.url" %}
-      {% else %}
-                         {% assign post = site.posts | where_exp:"post", "post_path == post.path" | first %}
-        {% unless post %}{% assign post = site.posts | where_exp:"post", "post_path == post.url"  | first %}{% endunless %}
       {% endif %}
-      <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
-        {% if post %}
-          {% include_cached pro/post-card.html post=post featured=featured %}
-        {% else %}
-          Post with path <code>{{ post_path }}</code> not found.
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-{% elsif site.posts.size > 1 %}
-  <div class="columns mt2 {% unless no_third_column %}columns-break{% endunless %}">
-    {% for post in site.posts limit:4 %}
-      <div class="column {% if featured %}column-1{% else %}column-1-2{% endif %}">
-        {% include_cached pro/post-card.html post=post featured=featured %}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
 
-{% assign posts_page = page.posts_page | default:page.more_posts %}
-{% if posts_page %}
-  {% if major >= 4 and minor >= 1 %}
-    {% assign more_posts = site.pages | find_exp:"page", "posts_page == page.path or posts_page == page.url" %}
-  {% else %}
-                           {% assign more_posts = site.pages | where_exp:"page", "posts_page == page.path" | first %}
-    {% unless more_posts %}{% assign more_posts = site.pages | where_exp:"page", "posts_page == page.url"  | first %}{% endunless %}
-  {% endif %}
-  {% if more_posts %}
-    {% capture posts_title %}<a class="heading flip-title" href="{{ more_posts.url | relative_url }}">{{ more_posts.title }}</a>{% endcapture %}
-    {% assign text = strings.welcome.more_posts | default:"See <!--posts_title--> for more" %}
-    <p class="read-more mt1">
-      {{ text | replace:"<!--posts_title-->", posts_title }}
-    </p>
-  {% else %}
-    Page with path <code>{{ page.more_posts }}</code> not found.
-  {% endif  %}
-{% endif %}
-{% endcapture %}
-{% assign content = content | replace:"<!--posts-->", posts_x %}
-{% endif %}
+    </div> <!-- .post-meta -->
 
-{% if content contains "<!--posts_list-->" %}
-{% capture posts_x %}
-{% if page.selected_posts %}
-  <ul class="related-posts mt2">
-    {% for post_path in page.selected_posts %}
-      {% if major >= 4 and minor >= 1 %}
-        {% assign post = site.posts | find_exp:"post", "post_path == post.path or post_path == post.url" %}
-      {% else %}
-                         {% assign post = site.posts | where_exp:"post", "post_path == post.path" | first %}
-        {% unless post %}{% assign post = site.posts | where_exp:"post", "post_path == post.url"  | first %}{% endunless %}
-      {% endif %}
-      {% if post %}
-        {% include_cached components/post-list-item.html post=post %}
-      {% else %}
-        <li>Post with path <code>{{ post_path }}</code> not found.</li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-{% elsif site.posts.size > 1 %}
-  <ul class="related-posts mt2">
-    {% for post in site.posts limit:5 %}
-      {% include_cached components/post-list-item.html post=post %}
-    {% endfor %}
-  </ul>
-{% endif %}
+  </div> <!-- .post-review -->
 
-{% assign posts_page = page.posts_page | default:page.more_posts %}
-{% if posts_page %}
-  {% if major >= 4 and minor >= 1 %}
-    {% assign more_posts = site.pages | find_exp:"page", "posts_page == page.path or posts_page == page.url" %}
-  {% else %}
-                           {% assign more_posts = site.pages | where_exp:"page", "posts_page == page.path" | first %}
-    {% unless more_posts %}{% assign more_posts = site.pages | where_exp:"page", "posts_page == page.url"  | first %}{% endunless %}
-  {% endif %}
-  {% if more_posts %}
-    {% capture posts_title %}<a class="heading flip-title" href="{{ more_posts.url | relative_url }}">{{ more_posts.title }}</a>{% endcapture %}
-    {% assign text = strings.welcome.more_posts | default:"See <!--posts_title--> for more" %}
-    <p class="read-more">
-      {{ text | replace:"<!--posts_title-->", posts_title }}
-    </p>
-  {% else %}
-    Page with path <code>{{ page.more_posts }}</code> not found.
-  {% endif  %}
-{% endif %}
-{% endcapture %}
-{% assign content = content | replace:"<!--posts_list-->", posts_x %}
-{% endif %}
+{% endfor %}
 
-{{ content }}
+</div> <!-- #post-list -->
+
+{% if paginator.total_pages > 0 %}
+  {% include post-paginator.html %}
+{% endif %}
