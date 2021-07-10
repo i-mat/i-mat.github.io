@@ -1628,7 +1628,3 @@ int main()
 	return 0;
 }
 ```
-[&#8657;][content]
-
-
-[content]:#目录
