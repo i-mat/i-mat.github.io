@@ -2,12 +2,12 @@
 title: BinaryTree Travel
 author: Sean Mat
 date: 2019-08-24 11:33:00 +0800
-categories: [Blogging, CPP]
-tags: [typography]
+categories: [C++, Basic]
+tags: [c++]
 math: true
 mermaid: true
 ---
-[原文](https://blog.csdn.net/czy47/article/details/81254984)
+[参考](https://blog.csdn.net/czy47/article/details/81254984)
 
 ## 遍历
 

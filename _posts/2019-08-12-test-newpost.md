@@ -2,8 +2,8 @@
 title: Sounds of Life
 author: Cotes Chung
 date: 2019-08-12 11:33:00 +0800
-categories: [Blogging, Life]
-tags: [typography]
+categories: [Life, Music]
+tags: [music]
 math: true
 mermaid: true
 ---

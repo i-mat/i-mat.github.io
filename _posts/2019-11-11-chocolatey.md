@@ -2,8 +2,8 @@
 title: Chocolatey
 author: Sean Mat
 date: 2019-11-11 11:33:00 +0800
-categories: [Blogging, Tools]
-tags: [typography]
+categories: [Tools]
+tags: [chocolatey]
 math: true
 mermaid: true
 ---
@@ -25,7 +25,7 @@ cmd运行：
 ## 用choco安装软件
 最好还是用管理员权限运行cmd.exe
 
-```
+```console
 choco install <packagename> -y
 cinst <packagename> -y
 ```
@@ -33,7 +33,7 @@ cinst <packagename> -y
 安装包的搜索社区[Chocolatey Gallery Packages](https://chocolatey.org/packages)
 
 其他用法：
-```
+```console
 choco install jdk8 googlechrome vscode 7zip //一次安装多个软件包
 choco install nodejs.install --version 0.10.35 //安装指定版本
 choco install dev-package.config //安装dev-package.config文件内描述的所有软件包
@@ -55,7 +55,7 @@ dev-package.config：
 ## 常用命令
 [Command Official](https://chocolatey.org/docs/commands-reference#how-to-pass-options-switches)
 
-* `choco list -li` 查看本地安装的软件
-* `choco search nodejs` 查找安装包
-* `choco outdated` 检查是否有旧版本软件
-* `choco list -l --idonly > choco.txt` 导出已安装的软件列表
+- `choco list -li` 查看本地安装的软件
+- `choco search nodejs` 查找安装包
+- `choco outdated` 检查是否有旧版本软件
+- `choco list -l --idonly > choco.txt` 导出已安装的软件列表

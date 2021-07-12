@@ -2,8 +2,8 @@
 title: Lead To Offer
 author: Sean Mat
 date: 2019-08-19 11:33:00 +0800
-categories: [Blogging, CPP]
-tags: [typography]
+categories: [C++, Test]
+tags: [c++]
 math: true
 mermaid: true
 ---
@@ -41,7 +41,7 @@ bool duplicate(int numbers[], int length, int* duplication)
 ```
 
 ### 3.1 数组-不修改数组找重复数字
-* 利用二分法进行数组分割
+- 利用二分法进行数组分割
 
 ```cpp
 int countRange(const int* numbers, int length, int start, int end);
@@ -94,7 +94,7 @@ int countRange(const int* numbers, int length, int start, int end)
 ```
 
 ### 3.2 找出没有重复的数字
-* 利用位运算--异或
+- 利用位运算--异或
 
 ```cpp
 int find(int[] arr)
@@ -108,8 +108,8 @@ int find(int[] arr)
 ```
 
 ## 4 数组-二维数组中的查找
-* 数组由左到右 和 由上到下 均为递增；查找某个数
-* 以数组的右上角或者左下角为突破口
+- 数组由左到右 和 由上到下 均为递增；查找某个数
+- 以数组的右上角或者左下角为突破口
 
 ```cpp
 bool fintTarget(int* matrix, int target,int row,int column)
@@ -130,7 +130,7 @@ bool fintTarget(int* matrix, int target,int row,int column)
 ```
 
 ## 5 字符串-替换空格
-* 双指针，一个指向末尾，一个指向拓展后的末尾
+- 双指针，一个指向末尾，一个指向拓展后的末尾
 
 ```cpp
 // 基本方法
@@ -273,7 +273,7 @@ void Remove(ListNode**pHead,int value)
 ```
 
 ### 6.2 链表-从尾到头打印链表
-* 先进后出的情况，用栈来实现
+- 先进后出的情况，用栈来实现
 
 ```cpp
 // 循环访问的方法
@@ -312,7 +312,7 @@ void PrintValueReverse(ListNode*pHead)
 ```
 
 ## 7 树-重建二叉树
-* [参考](https://www.cnblogs.com/zywu/p/5758917.html)
+- [参考](https://www.cnblogs.com/zywu/p/5758917.html)
 
 
 ```cpp
@@ -419,9 +419,9 @@ void push(int node)
 ```
 
 ## 10 斐波那契数
-* 循环方法实现计算
-    * 时间复杂度`O(n)`
-* [青蛙跳台阶问题](https://www.jianshu.com/p/965d12083d7f)
+- 循环方法实现计算
+    - 时间复杂度`O(n)`
+- [青蛙跳台阶问题](https://www.jianshu.com/p/965d12083d7f)
 
 ```cpp
 long long Fibonacci(unsigned n)
@@ -624,7 +624,7 @@ int FindMin_Rotate(vector<int> &a)
 ```
 
 ## 12 回溯法-矩阵中的路径
-* 判断数组中是否含有相应字符串
+- 判断数组中是否含有相应字符串
 
 ```cpp
 bool haspath(char* matrix, int rows, int cols,char* str)
