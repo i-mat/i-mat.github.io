@@ -12,10 +12,24 @@ mermaid: true
 1. 封装：隐藏实现细节，使得代码模块化
 1. 继承：使用现有类的所有功能，进行功能拓展。从一般到特殊的过程，称为“子类”和“父类”。
 1. 多态：将父对象设置成为和一个或多个他的子对象相等的技术。允许将子类类型的指针赋值给父类类型的指针。**将父类暴露给用户子类隐藏，子类指针转化成父类指针进行返回，可实现程序的简易替换，背后的运作原理通过子类进行切换**。
+> 上述特性最终目的是实现一个接口的复用性
 
-## 多态的实现
-- 静态多态（早绑定）-- 函数重载
-- 动态多态（晚绑定）-- 添加`virtual`关键字，虚函数实现
+## 多态
+### 多态的分类
+- 静态多态（编译时候 - 早绑定）
+    1. 函数重载
+        - 解释：一词多义，通过上下文来确定同名函数的重载版本
+        - 应用场景：上下文的关键：参数个数、参数类型，参数顺序（与返回值、参数名 无关），三个中至少有一个不同
+        - 多个功能类似的函数，可以共用一个函数名
+        - e.g. print(int, chr), print(int, int)
+    1. 函数模板
+        - 解释：将使用多的场景的抽象为泛型
+        - 应用场景：仅仅支持，参数**个数相同**且参数**类型不同**的情况
+        - e.g. print(T, T)  仅仅单个类型（比重载的抽象程度更高）
+- 动态多态（运行时候 - 晚绑定）
+    - 添加`virtual`关键字，虚函数实现
+
+### 多态的实现
   
 ```cpp
 #include <iostream>
@@ -54,10 +68,10 @@ int main(void)
     return 0;
 }
 ```
->**Output**
->
-> Adult need Full Fare!  
-> Child Free!
+>   **Output**
+>   
+>    Adult need Full Fare!  
+>    Child Free!
 
 >**Hint**
 > 1. 只有类的成员函数才能说明为虚函数
@@ -94,8 +108,7 @@ int main(void)
 
 ## `extern "C"` 的修饰作用
 1. 被`extern "C"`修饰的变量和函数是按照C 语言方式编译和连接的
-1. `extern "C"`的作用是让C++ 编译器将`extern "C"`声明的代码当作C 语言代码处理，可以避免C++
-因符号修饰导致代码不能和C 语言库中的符号进行链接。
+1. `extern "C"`的作用是让C++ 编译器将`extern "C"`声明的代码当作C 语言代码处理，可以避免C++因符号修饰导致代码不能和C 语言库中的符号进行链接。
 
 ## 智能指针
 1. 目的：管理堆内存，利用对象离开作用域自动析构的特性，将释放内存的操作托管给一个对象。
@@ -128,46 +141,46 @@ int main(void)
 
 ## STL中实现了哪些排序算法
 
-|函数名|定义|
-|:- |:-|
-|sort |对给定区间所有元素进行排序（不稳定）|
-|stable_sort |对给定区间所有元素进行稳定排序|
-|partial_sort |对给定区间所有元素部分排序|
-|partial_sort_copy |对给定区间复制并排序|
-|nth_element |找出给定区间的某个位置对应的元素|
-|is_sorted |判断一个区间是否已经排好序|
-|partition |使得符合某个条件的元素放在前面|
-|stable_partition |相对稳定的使得符合某个条件的元素放在前面|
+| 函数名            | 定义                                     |
+|:------------------|:---------------------------------------|
+| sort              | 对给定区间所有元素进行排序（不稳定）       |
+| stable_sort       | 对给定区间所有元素进行稳定排序           |
+| partial_sort      | 对给定区间所有元素部分排序               |
+| partial_sort_copy | 对给定区间复制并排序                     |
+| nth_element       | 找出给定区间的某个位置对应的元素         |
+| is_sorted         | 判断一个区间是否已经排好序               |
+| partition         | 使得符合某个条件的元素放在前面           |
+| stable_partition  | 相对稳定的使得符合某个条件的元素放在前面 |
 
 ## 各种排序方法的性能
 
-|排序法 |平均时间复杂度 |最好情况 |最坏情况	|空间复杂度 |稳定度|
-|:- | :- |:- | :-|:- |-:|
-|插入排序|  O($$n^{2}$$) | O($$n$$)|	O($$n^{2}$$)|	O($$1$$)|	稳定|
-|希尔排序| O($$n^{1.3}$$)	| O($$n$$)|	O($$n^{2}$$)	|	O($$1$$)|不稳定|
-|选择排序| O($$n^{2}$$)	| O($$n^{2}$$)|	O($$n^{2}$$)|	O($$1$$)|	不稳定|
-|堆排序| O($$nlog_{2}n$$)	| O($$nlog_{2}n$$)|	O($$nlog_{2}n$$)|	O($$1$$)|	不稳定|
-|冒泡排序| O($$n^{2}$$)	| O($$n$$)|	O($$n^{2}$$)|	O($$1$$)|	稳定|
-|快速排序| O($$nlog_{2}n$$)	| O($$nlog_{2}n$$)|	O($$n^{2}$$)|	O($$nlog_{2}n$$)|	不稳定|
-|归并排序| O($$nlog_{2}n$$)| O($$nlog_{2}n$$)|O($$nlog_{2}n$$)| O($$n$$)| 稳定|
-|二叉树排序| O($$n^{2}$$)	| O($$n^{2}$$)|	 O($$nlog_{2}n$$)|	O($$n$$)|	不稳定|
+| 排序法     | 平均时间复杂度   | 最好情况         | 最坏情况         | 空间复杂度       | 稳定度 |
+|:--------|------------------|:-----------------|------------------|:-----------------|-----:|
+| 插入排序   | O($$n^{2}$$)     | O($$n$$)         | O($$n^{2}$$)     | O($$1$$)         |   稳定 |
+| 希尔排序   | O($$n^{1.3}$$)   | O($$n$$)         | O($$n^{2}$$)     | O($$1$$)         | 不稳定 |
+| 选择排序   | O($$n^{2}$$)     | O($$n^{2}$$)     | O($$n^{2}$$)     | O($$1$$)         | 不稳定 |
+| 堆排序     | O($$nlog_{2}n$$) | O($$nlog_{2}n$$) | O($$nlog_{2}n$$) | O($$1$$)         | 不稳定 |
+| 冒泡排序   | O($$n^{2}$$)     | O($$n$$)         | O($$n^{2}$$)     | O($$1$$)         |   稳定 |
+| 快速排序   | O($$nlog_{2}n$$) | O($$nlog_{2}n$$) | O($$n^{2}$$)     | O($$nlog_{2}n$$) | 不稳定 |
+| 归并排序   | O($$nlog_{2}n$$) | O($$nlog_{2}n$$) | O($$nlog_{2}n$$) | O($$n$$)         |   稳定 |
+| 二叉树排序 | O($$n^{2}$$)     | O($$n^{2}$$)     | O($$nlog_{2}n$$) | O($$n$$)         | 不稳定 |
 
 ## C++的数据类型
 - 1 字节 = 8 位
 - C++语言规定一个int 至少和一个short 一样大，一个long 至少和一个int 一样大，一个long long至少和一个long 一样大。
 - 32位或64位系统下int的长度为4字节，最小可访问单位为 1 字节
 
-|类型 |含义 |最小尺寸|
-|:- | :- |:- |
-|bool  |布尔类型 |未定义|
-|char  |字符 |8 位|
-|wchar_t  |宽字符 |16 位|
-|short  |短整型 |16 位|
-|int  |整型 |16 位|
-|long  |长整型 |32 位|
-|long long  |长整型 |64 位|
-|float  |单精度浮点数 |6 位有效数字|
-|double  |双精度浮点数 |10 位有效数字|
+| 类型      | 含义         | 最小尺寸      |
+|:----------|------------|:-------------|
+| bool      | 布尔类型     | 未定义        |
+| char      | 字符         | 8 位          |
+| wchar_t   | 宽字符       | 16 位         |
+| short     | 短整型       | 16 位         |
+| int       | 整型         | 16 位         |
+| long      | 长整型       | 32 位         |
+| long long | 长整型       | 64 位         |
+| float     | 单精度浮点数 | 6 位有效数字  |
+| double    | 双精度浮点数 | 10 位有效数字 |
 
 ## Const 常量的状态
 1. `char * const cp` ：cp is a const pointer to char
@@ -209,35 +222,39 @@ int main(void)
     1. 用在任意指针类型之间的转换；以及指针与足够大的整数类型之间的转换，从整数到指针，无视大小。
 
 ## STL中常用容器的初始化
-
-```cpp
 1. Vector
-	a. vector<int> first;
-	b. vector<int> second (4,100);
-	c. vector<int> third (second.begin(),second.end());  
-	d. vector<int> fourth (third);
-	e. int myints[] = {16,2,77,29};
-        vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
-2. List
-	a.  list<int> first;                               
-	b.  list<int> second (4,100);                       
-	c.  list<int> third (second.begin(),second.end());  
-	d.  list<int> fourth (third);                     
-	e.  int myints[] = {16,2,77,29};
-	 list<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
-3. Deque
-	a. deque<int> first; 
-	b. deque<int> second (4,100);          
-	c. deque<int> third (second.begin(),second.end()); 
-	d. deque<int> fourth (third);                      
-	e. int myints[] = {16,2,77,29}; deque<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
+```cpp
+vector<int> first;
+vector<int> second (4,100);
+vector<int> third (second.begin(),second.end());  
+vector<int> fourth (third);
+int myints[] = {16,2,77,29};
+    vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
+```
+1. List
+```cpp
+list<int> first;                               
+list<int> second (4,100);                       
+list<int> third (second.begin(),second.end());  
+list<int> fourth (third);                     
+int myints[] = {16,2,77,29};
+    list<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
+```
+1. Deque
+```cpp
+deque<int> first; 
+deque<int> second (4,100);          
+deque<int> third (second.begin(),second.end()); 
+deque<int> fourth (third);                      
+int myints[] = {16,2,77,29}; 
+    deque<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
 ```
 
 ## 二维数组的申明
   
 ```cpp
- vector<vector<int> > matrix (val,vector<int> (val,0 ) );
-	matrix.size();
+vector<vector<int> > matrix (val, vector<int> (val, 0));
+    matrix.size();
     matrix[0].size();
 ``` 
 

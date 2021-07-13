@@ -13,7 +13,7 @@ mermaid: true
 
 ```cpp
 void preorderTraversalNew(TreeNode *root, vector<int> &path)
-{s
+{
     stack< pair<TreeNode *, bool> > s;
     s.push(make_pair(root, false));
     bool visited;
